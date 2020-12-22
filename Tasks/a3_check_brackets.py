@@ -5,5 +5,20 @@ def check_brackets(brackets_row: str) -> bool:
     :param brackets_row: input string to be checked
     :return: True if valid, False otherwise
     """
+    stack = []
+    for bracket in brackets_row:
+        if bracket == '(':
+            stack.append(bracket)
+        elif bracket == ')':
+            if stack:
+                stack.pop()
+            else:
+                return False
+    if stack:
+        return False
+    else:
+        return True
 
-    return False
+
+if __name__ == '__main__':
+    print(check_brackets(""))
