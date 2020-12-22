@@ -16,8 +16,6 @@ def binary_search(elem: int, arr: Sequence) -> Optional[int]:
         if elem not in arr:
             return None
         mid = (start + end) // 2
-        print(mid)
-        print(end)
         if elem == arr[mid]:
             return mid
         if elem < arr[mid]:
