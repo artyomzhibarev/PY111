@@ -10,14 +10,10 @@ def check_brackets(brackets_row: str) -> bool:
         if bracket == '(':
             stack.append(bracket)
         elif bracket == ')':
-            if stack:
-                stack.pop()
-            else:
+            if not stack:
                 return False
-    if stack:
-        return False
-    else:
-        return True
+            stack.pop()
+    return False if stack else True
 
 
 if __name__ == '__main__':
