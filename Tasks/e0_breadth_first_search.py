@@ -2,6 +2,12 @@ from typing import Hashable, List
 import networkx as nx
 
 
+def drow_graph(g: nx.Graph):
+    nx.draw(g, with_labels=True)
+    plt.savefig('Graph.png')
+    plt.show()
+
+
 def bfs(g: nx.Graph, start_node: Hashable) -> List[Hashable]:
     """
     Do an breadth-first search and returns list of nodes in the visited order
