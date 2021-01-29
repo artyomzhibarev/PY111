@@ -1,8 +1,5 @@
 from collections import deque
-from random import randint
 from itertools import cycle
-
-import networkx as nx
 
 """1. Оценить асимптотическую сложность приведенного ниже алгоритма:"""
 
@@ -26,14 +23,10 @@ def task1():
 """
 
 
-def task2(N, K): # не смог
-    man = [i for i in range(N)]
-    for i in range(K):
-        man[K - N] = 0
-    print(man)
-    for j in range(len(man)):
-        if man[j] != 0:
-            return j
+def task2(N, K):  # не смог
+    list_ = [i for i in range(N)]
+    for i in range(4):
+        print(cycle(list_))
 
 
 """
@@ -70,8 +63,6 @@ def task3(g):
 (все стоимости положительные). Необходимо найти путь минимальной стоимости из заданной ячейки в заданную ячейку и
 вывести этот путь.
 """
-
-
 
 
 def task4():
@@ -128,7 +119,6 @@ def task5():
     return ''.join(list_)
 
 
-
 """
 6. Аренда ракет
 Вы – компания, дающая в аренду ракеты. Каждый день к вам приходит список заявок на использование ракет в виде:
@@ -141,16 +131,16 @@ def task5():
 
 
 def task6():
-    times_ = [(0, 1), (5, 6), (3, 4), (1, 2)]
+    times_ = [(0, 1), (3, 4), (2, 3), (33, 2)]
     times = times_.copy()
     s = []
-    times_sorted = sorted(times, key=lambda x: x[1])
+    times_sorted = sorted(times, key=lambda x: x[0])
     print(times_sorted)
-    # for index, item in range(len(times_sorted)):
-    #     s.append(item[index][1] - item[index+1][0])
-    for i in range(len(times_sorted) + 1):
-        print(times_sorted[i][1] - times_sorted[i + 1][0])
-    print(s)
+    for i in range(len(times_sorted)-1):
+        s.append(times_sorted[i][1] - times_sorted[i+1][0])
+        print(s)
+    for i in s:
+        return False if i != 0 else True
 
 
 """
@@ -179,8 +169,9 @@ if __name__ == '__main__':
     #     ('C', 'D'),
     #     ('F', 'G'),
     # ])
+    # print(task2(3, 4))
     # print(task3(graph))
     # print(task4())
-    # print(task6())
-    print(task5())
+    print(task6())
+    # print(task5())
     # print(task7([randint(13, 25) for i in range(10)], 13, 25))
