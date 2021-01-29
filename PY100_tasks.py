@@ -1,5 +1,6 @@
 from collections import deque
 from random import randint
+from itertools import cycle
 
 import networkx as nx
 
@@ -70,14 +71,15 @@ def task3(g):
 вывести этот путь.
 """
 
-list_of_values = [
-    [2, 5, 6],
-    [7, 1, 9],
-    [6, 4, 2]
-]
+
 
 
 def task4():
+    list_of_values = [
+        [2, 5, 6],
+        [7, 1, 9],
+        [6, 4, 2]
+    ]
     path = []
     cost = list_of_values.copy()
     for j in range(1, len(cost[0])):
@@ -110,21 +112,20 @@ ACAA
 """
 
 
-def task5(): # не готово
-    list_strings = ['ATTA', 'ACTA', 'AGCA', 'ACAA']
+def task5():
+    list_strings = ['ATTA', 'ACTA', 'AGCA', 'ACAK']
     list_ = []
     dict_ = dict()
-    j = 0
-    for i in range(len(list_strings)):
-        for char in list_strings[i][j]:
-            if char in dict_:
-                dict_[char] += 1
-            else:
-                dict_[char] = 1
-            list_.append(dict_)
-    j += 1
-    print(dict_)
-
+    for j in range(len(list_strings)):
+        for i in range(len(list_strings)):
+            for char in list_strings[i][j]:
+                if char in dict_:
+                    dict_[char] += 1
+                else:
+                    dict_[char] = 1
+        list_.append(max(dict_, key=dict_.get))
+        dict_.clear()
+    return ''.join(list_)
 
 
 
@@ -170,16 +171,16 @@ def task7(list_, min_, max_):
 
 
 if __name__ == '__main__':
-    graph = nx.Graph()
-    graph.add_nodes_from("ABCDEFG")
-    graph.add_edges_from([
-        ('A', 'B'),
-        ('B', 'C'),
-        ('C', 'D'),
-        ('F', 'G'),
-    ])
+    # graph = nx.Graph()
+    # graph.add_nodes_from("ABCDEFG")
+    # graph.add_edges_from([
+    #     ('A', 'B'),
+    #     ('B', 'C'),
+    #     ('C', 'D'),
+    #     ('F', 'G'),
+    # ])
     # print(task3(graph))
     # print(task4())
     # print(task6())
-    # print(task5())
-    print(task7([randint(13, 25) for i in range(10)], 13, 25))
+    print(task5())
+    # print(task7([randint(13, 25) for i in range(10)], 13, 25))
